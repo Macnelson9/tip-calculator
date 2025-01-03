@@ -1,0 +1,69 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-family: cursive;
+  padding: 10px 20px;
+}
+
+h1 {
+  font-size: 3em;
+  font-family: Impact, sans-serif;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+input {
+  border: 3px solid;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+input:focus {
+  border-color: green;
+  outline: none;
+}
+
+button {
+  background-color: green;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(0, 128, 0, 0.582);
+}
+
+.dark-mode {
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to right, #a8a8a8, #000);
+}
+
+.total {
+  font-size: 1.4rem;
+  margin: 13px 0;
+}
