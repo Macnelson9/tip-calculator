@@ -13,11 +13,17 @@ const twentyBtn = document.getElementById('twenty-btn');
 const fiftyBtn = document.getElementById('fifty-btn');
 const hundredBtn = document.getElementById('hundred-btn');
 
+const formatCur = function (amount, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+  }).format(amount);
+};
+
 const tipFunction = function (bill, tip, split) {
   bill = billAmt.value;
   tip = tipPercentage.value;
   split = splitBill.value;
-
   let total = bill * (1 + tip / 100);
 
   if (split > 1) {
@@ -26,7 +32,21 @@ const tipFunction = function (bill, tip, split) {
     total;
   }
 
-  totalValue.innerHTML = `Total: $${total.toFixed(2)}`;
+  let currencyLocale = document.getElementById('currencies');
+  let currencyValue = document.getElementById('currencies');
+
+  if (currencyLocale.selectedIndex === currencyValue.selectedIndex) {
+    currencyLocale = currencyLocale.dataset.locale;
+    currencyValue = currencyValue.value;
+
+    totalValue.innerHTML = `Total: ${formatCur(
+      total.toFixed(2),
+      currencyLocale,
+      currencyValue
+    )}`;
+  } else {
+    alert('Please select a currency');
+  }
 };
 
 calcBtn.addEventListener('click', tipFunction);
@@ -44,7 +64,21 @@ fiveBtn.addEventListener('click', function (bill, tip, split) {
     total;
   }
 
-  totalValue.innerHTML = `Total: $${total.toFixed(2)}`;
+  let currencyLocale = document.getElementById('currencies');
+  let currencyValue = document.getElementById('currencies');
+
+  if (currencyLocale.selectedIndex === currencyValue.selectedIndex) {
+    currencyLocale = currencyLocale.dataset.locale;
+    currencyValue = currencyValue.value;
+
+    totalValue.innerHTML = `Total: ${formatCur(
+      total.toFixed(2),
+      currencyLocale,
+      currencyValue
+    )}`;
+  } else {
+    alert('Please select a currency');
+  }
 });
 
 tenBtn.addEventListener('click', function (bill, tip, split) {
@@ -60,7 +94,21 @@ tenBtn.addEventListener('click', function (bill, tip, split) {
     total;
   }
 
-  totalValue.innerHTML = `Total: $${total.toFixed(2)}`;
+  let currencyLocale = document.getElementById('currencies');
+  let currencyValue = document.getElementById('currencies');
+
+  if (currencyLocale.selectedIndex === currencyValue.selectedIndex) {
+    currencyLocale = currencyLocale.dataset.locale;
+    currencyValue = currencyValue.value;
+
+    totalValue.innerHTML = `Total: ${formatCur(
+      total.toFixed(2),
+      currencyLocale,
+      currencyValue
+    )}`;
+  } else {
+    alert('Please select a currency');
+  }
 });
 
 fifteenBtn.addEventListener('click', function (bill, tip, split) {
@@ -76,7 +124,21 @@ fifteenBtn.addEventListener('click', function (bill, tip, split) {
     total;
   }
 
-  totalValue.innerHTML = `Total: $${total.toFixed(2)}`;
+  let currencyLocale = document.getElementById('currencies');
+  let currencyValue = document.getElementById('currencies');
+
+  if (currencyLocale.selectedIndex === currencyValue.selectedIndex) {
+    currencyLocale = currencyLocale.dataset.locale;
+    currencyValue = currencyValue.value;
+
+    totalValue.innerHTML = `Total: ${formatCur(
+      total.toFixed(2),
+      currencyLocale,
+      currencyValue
+    )}`;
+  } else {
+    alert('Please select a currency');
+  }
 });
 
 twentyBtn.addEventListener('click', function (bill, tip, split) {
@@ -92,7 +154,21 @@ twentyBtn.addEventListener('click', function (bill, tip, split) {
     total;
   }
 
-  totalValue.innerHTML = `Total: $${total.toFixed(2)}`;
+  let currencyLocale = document.getElementById('currencies');
+  let currencyValue = document.getElementById('currencies');
+
+  if (currencyLocale.selectedIndex === currencyValue.selectedIndex) {
+    currencyLocale = currencyLocale.dataset.locale;
+    currencyValue = currencyValue.value;
+
+    totalValue.innerHTML = `Total: ${formatCur(
+      total.toFixed(2),
+      currencyLocale,
+      currencyValue
+    )}`;
+  } else {
+    alert('Please select a currency');
+  }
 });
 
 fiftyBtn.addEventListener('click', function (bill, tip, split) {
@@ -108,7 +184,21 @@ fiftyBtn.addEventListener('click', function (bill, tip, split) {
     total;
   }
 
-  totalValue.innerHTML = `Total: $${total.toFixed(2)}`;
+  let currencyLocale = document.getElementById('currencies');
+  let currencyValue = document.getElementById('currencies');
+
+  if (currencyLocale.selectedIndex === currencyValue.selectedIndex) {
+    currencyLocale = currencyLocale.dataset.locale;
+    currencyValue = currencyValue.value;
+
+    totalValue.innerHTML = `Total: ${formatCur(
+      total.toFixed(2),
+      currencyLocale,
+      currencyValue
+    )}`;
+  } else {
+    alert('Please select a currency');
+  }
 });
 
 hundredBtn.addEventListener('click', function (bill, tip, split) {
@@ -124,12 +214,27 @@ hundredBtn.addEventListener('click', function (bill, tip, split) {
     total;
   }
 
-  totalValue.innerHTML = `Total: $${total.toFixed(2)}`;
+  let currencyLocale = document.getElementById('currencies');
+  let currencyValue = document.getElementById('currencies');
+
+  if (currencyLocale.selectedIndex === currencyValue.selectedIndex) {
+    currencyLocale = currencyLocale.dataset.locale;
+    currencyValue = currencyValue.value;
+
+    totalValue.innerHTML = `Total: ${formatCur(
+      total.toFixed(2),
+      currencyLocale,
+      currencyValue
+    )}`;
+  } else {
+    alert('Please select a currency');
+  }
 });
 
 clearBtn.addEventListener('click', function () {
   billAmt.value = '';
   tipPercentage.value = '';
   splitBill.value = '';
+  document.getElementById('currencies').selectedIndex = 0;
   totalValue.innerHTML = 'Total: $0.00';
 });

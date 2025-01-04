@@ -35,6 +35,14 @@
           placeholder="Split the bill between how many people?"
           id="split-bill"
         />
+        <label for="currency">Currency:</label>
+        <select name="currencies" id="currencies">
+          <option value="USD" data-locale="en_US" class="None">None</option>
+          <option value="USD" data-locale="en-US" class="USD">Dollar</option>
+          <option value="GBP" data-locale="en-UK" class="GBP">Pound</option>
+          <option value="EUR" data-locale="pt-PT" class="EUR">Euro</option>
+        </select>
+
         <div class="percentages-container">
           <button type="button" id="five-btn" data-percentage="5">5%</button>
           <button type="button" id="ten-btn" data-percentage="10">10%</button>
