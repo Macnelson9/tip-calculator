@@ -1,5 +1,6 @@
 'use strict';
 
+// Selected elements
 const billAmt = document.getElementById('bill-amount');
 const tipPercentage = document.getElementById('tip-percentage');
 const calcBtn = document.querySelector('.calc-btn');
@@ -13,6 +14,7 @@ const twentyBtn = document.getElementById('twenty-btn');
 const fiftyBtn = document.getElementById('fifty-btn');
 const hundredBtn = document.getElementById('hundred-btn');
 
+// Currency formatter function
 const formatCur = function (amount, locale, currency) {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
@@ -20,6 +22,7 @@ const formatCur = function (amount, locale, currency) {
   }).format(amount);
 };
 
+// Tipping function
 const tipFunction = function (bill, tip, split) {
   bill = billAmt.value;
   tip = tipPercentage.value;
@@ -35,6 +38,7 @@ const tipFunction = function (bill, tip, split) {
   let currencyLocale = document.getElementById('currencies');
   let currencyValue = document.getElementById('currencies');
 
+  // This logic ensures that the selected currency by the user is the one to be formatted and output
   if (currencyLocale.selectedIndex === currencyValue.selectedIndex) {
     currencyLocale = currencyLocale.dataset.locale;
     currencyValue = currencyValue.value;
@@ -51,6 +55,7 @@ const tipFunction = function (bill, tip, split) {
 
 calcBtn.addEventListener('click', tipFunction);
 
+// Logics for the percentage buttons
 fiveBtn.addEventListener('click', function (bill, tip, split) {
   bill = billAmt.value;
   tip = tip === Number ? tipPercentage.value : fiveBtn.dataset.percentage;
@@ -231,6 +236,7 @@ hundredBtn.addEventListener('click', function (bill, tip, split) {
   }
 });
 
+// This button resets or clears the calculator
 clearBtn.addEventListener('click', function () {
   billAmt.value = '';
   tipPercentage.value = '';
