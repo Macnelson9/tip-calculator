@@ -244,3 +244,77 @@ clearBtn.addEventListener('click', function () {
   document.getElementById('currencies').selectedIndex = 0;
   totalValue.innerHTML = 'Total: $0.00';
 });
+
+const containerBoxes = document.querySelectorAll('.box');
+const transactions = {
+  movements: [],
+  movementsDates: [
+    '2019-11-01T13:15:33.035Z',
+    '2019-11-30T09:48:16.867Z',
+    '2019-12-25T06:04:23.907Z',
+    '2020-01-25T14:18:46.235Z',
+    '2020-02-05T16:33:06.386Z',
+    '2020-04-10T14:43:26.374Z',
+    '2020-06-25T18:49:59.371Z',
+    '2020-07-26T12:01:20.894Z',
+  ],
+  currency: 'EUR',
+  locale: 'pt-PT',
+};
+
+// History function
+const formatMovementDate = function (date, locale) {
+  const calcDaysPassed = (date1, date2) =>
+    Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+  const daysPassed = calcDaysPassed(new Date(), date);
+  console.log(daysPassed);
+
+  if (daysPassed === 0) return 'Today';
+  if (daysPassed === 1) return 'Yesterday';
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  else {
+    // const day = `${date.getDate()}`.padStart(2, 0);
+    // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    // const year = date.getFullYear();
+    // return `${day}/${month}/${year}`;
+    return new Intl.DateTimeFormat(locale).format(date);
+  }
+};
+
+const displayHistory = function (acc, sort = false) {
+  containerBoxes.innerHTML = '';
+
+  const histories = sort
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
+
+  histories.forEach(function (mov, i) {
+    // const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    const date = new Date(acc.movementsDates[i]);
+
+    const displayDate = formatMovementDate(date, acc.locale);
+
+    const formattedMov = formatCur(mov, acc.locale, acc.currency);
+
+    const html = `
+     <div class="box-container">
+      <div class="box box-one">
+        <h2>Date</h2>
+        <p>${i + 1}. ${displayDate}</p>
+      </div>
+      <div class="box box-two">
+        <h2>Narration</h2>
+        <p>${i + 1}. Soda, Fries and Smoothie</p>
+      </div>
+      <div class="box box-three">
+        <h2>Amount</h2>
+        <p>${i + 1}. ${formattedMov}</p>
+      </div>
+    </div>
+    `;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
