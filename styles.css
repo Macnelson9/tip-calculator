@@ -163,7 +163,7 @@ button:hover {
   background: rgb(255, 255, 255, 0.3);
   /* backdrop-filter: blur(10px); */
   height: 100vh;
-  width: 250px;
+  width: 600px;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
