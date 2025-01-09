@@ -13,6 +13,7 @@ const fifteenBtn = document.getElementById('fifteen-btn');
 const twentyBtn = document.getElementById('twenty-btn');
 const fiftyBtn = document.getElementById('fifty-btn');
 const hundredBtn = document.getElementById('hundred-btn');
+const clearHistoryBtn = document.getElementById('clear-history-btn');
 
 // Currency formatter function
 const formatCur = function (amount, locale, currency) {
@@ -20,6 +21,31 @@ const formatCur = function (amount, locale, currency) {
     style: 'currency',
     currency: currency,
   }).format(amount);
+};
+
+// Function to update history
+const updateHistory = function (total) {
+  const historyAmount = document.querySelector('.history-amount');
+  const history = JSON.parse(localStorage.getItem('tipHistory')) || [];
+  history.push(total);
+  localStorage.setItem('tipHistory', JSON.stringify(history));
+
+  let historyHTML = '';
+  history.forEach((amount, index) => {
+    historyHTML += `<p class="history-amount">${index + 1}. ${formatCur(
+      amount,
+      'en-US',
+      'USD'
+    )}</p>`;
+  });
+
+  historyAmount.innerHTML = historyHTML;
+};
+
+// Function to clear history
+const clearHistory = function () {
+  localStorage.removeItem('tipHistory');
+  document.querySelector('.history-amounts').innerHTML = '';
 };
 
 // Tipping function
@@ -48,6 +74,8 @@ const tipFunction = function (bill, tip, split) {
       currencyLocale,
       currencyValue
     )}`;
+
+    updateHistory(total.toFixed(2));
   } else {
     alert('Please select a currency');
   }
@@ -81,6 +109,8 @@ const calculateTips = function (bill, tip, split) {
       currencyLocale,
       currencyValue
     )}`;
+
+    updateHistory(total.toFixed(2));
   } else {
     alert('Please select a currency');
   }
@@ -100,3 +130,6 @@ clearBtn.addEventListener('click', function () {
   document.getElementById('currencies').selectedIndex = 0;
   totalValue.innerHTML = 'Total: $0.00';
 });
+
+// Add event listener to clear history button
+clearHistoryBtn.addEventListener('click', clearHistory);
